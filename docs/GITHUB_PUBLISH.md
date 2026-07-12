@@ -33,3 +33,5 @@ The included helper script checks authentication, verifies the working tree is c
 ```powershell
 .\scripts\publish-github.ps1
 ```
+
+GitHub Pages deploys through `.github/workflows/pages.yml`. The workflow runs `actions/configure-pages` with `enablement: true` before deployment so a fresh repository can create or repair its Pages site configuration without a manual Settings step.
