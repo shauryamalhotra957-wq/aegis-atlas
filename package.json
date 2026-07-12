@@ -1,0 +1,52 @@
+{
+  "name": "aegis-atlas",
+  "version": "0.0.0",
+  "description": "Offline-first disaster response command simulator for civic resilience planning.",
+  "author": "Shaurya Malhotra",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shauryamalhotra957-wq/aegis-atlas.git"
+  },
+  "keywords": [
+    "disaster-response",
+    "climate-resilience",
+    "civic-tech",
+    "offline-first",
+    "react",
+    "typescript"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "qa:visual": "node scripts/visual-qa.mjs",
+    "check": "npm run lint && npm run test && npm run build"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.24.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "axe-core": "^4.12.1",
+    "jsdom": "^29.1.1",
+    "oxlint": "^1.71.0",
+    "playwright": "^1.61.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1",
+    "vitest": "^4.1.10"
+  }
+}
