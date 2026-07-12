@@ -181,7 +181,7 @@ function ScenarioControls({
           <span className="eyebrow">Aegis Atlas</span>
           <h1>Disaster Response Command</h1>
         </div>
-        <img src="/aegis.svg" width="44" height="44" alt="Aegis Atlas" />
+        <img src={`${import.meta.env.BASE_URL}aegis.svg`} width="44" height="44" alt="Aegis Atlas" />
       </div>
 
       <div className="hazard-selector" role="group" aria-label="Hazard type">

@@ -2,6 +2,7 @@
   "name": "aegis-atlas",
   "version": "0.0.0",
   "description": "Offline-first disaster response command simulator for civic resilience planning.",
+  "homepage": "https://shauryamalhotra957-wq.github.io/aegis-atlas/",
   "author": "Shaurya Malhotra",
   "license": "MIT",
   "repository": {
@@ -25,6 +26,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "qa:visual": "node scripts/visual-qa.mjs",
+    "preview:pages": "node scripts/pages-preview.mjs",
     "check": "npm run lint && npm run test && npm run build"
   },
   "dependencies": {

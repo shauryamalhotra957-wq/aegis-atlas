@@ -100,7 +100,11 @@ Repository:
 
 [github.com/shauryamalhotra957-wq/aegis-atlas](https://github.com/shauryamalhotra957-wq/aegis-atlas)
 
-The repo includes an MIT license, GitHub Actions CI, committed QA screenshots, and a helper script for future pushes:
+Live demo target:
+
+[shauryamalhotra957-wq.github.io/aegis-atlas](https://shauryamalhotra957-wq.github.io/aegis-atlas/)
+
+The repo includes an MIT license, GitHub Actions CI, GitHub Pages deployment, committed QA screenshots, and a helper script for future pushes:
 
 ```powershell
 .\scripts\publish-github.ps1

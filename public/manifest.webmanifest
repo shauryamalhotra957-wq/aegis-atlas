@@ -2,13 +2,14 @@
   "name": "Aegis Atlas",
   "short_name": "Aegis",
   "description": "Offline-first disaster response command simulator.",
-  "start_url": "/",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "background_color": "#f7f1e8",
   "theme_color": "#f7f1e8",
   "icons": [
     {
-      "src": "/aegis.svg",
+      "src": "aegis.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
