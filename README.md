@@ -6,6 +6,16 @@ Offline-first disaster response command simulator for civic resilience demos, ha
 
 Aegis Atlas turns field notes and crisis assumptions into a defensible incident action plan. It models risk across a synthetic city, prioritizes zones with an equity guardrail, allocates scarce resources, and exports a Markdown or JSON plan without sending sensitive notes to any server.
 
+## Project Snapshot
+
+| Area | Detail |
+| --- | --- |
+| Experience | Offline-first civic resilience command center |
+| Core system | Deterministic simulation, field-note inference, resource allocation, incident brief export |
+| Design signal | Dense operational UI with desktop/mobile visual QA screenshots |
+| Quality signal | CI, Vitest domain tests, production build, GitHub Pages deployment |
+| Live demo | [shauryamalhotra957-wq.github.io/aegis-atlas](https://shauryamalhotra957-wq.github.io/aegis-atlas/) |
+
 ## Screenshots
 
 ![Aegis Atlas desktop command center](qa/aegis-desktop.png)
