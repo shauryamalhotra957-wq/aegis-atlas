@@ -664,6 +664,12 @@ function App() {
 
   return (
     <main className="app-shell">
+      <div className="atlas-entry" aria-hidden="true">
+        <div>
+          <span>Aegis Atlas</span>
+          <strong>Command floor syncing</strong>
+        </div>
+      </div>
       <ScenarioControls
         scenario={scenario}
         inferenceReasons={inferenceReasons}
@@ -686,6 +692,25 @@ function App() {
           </div>
         </header>
 
+        <section className="mission-prologue" aria-label="Decision snapshot">
+          <article>
+            <span>Active hazard</span>
+            <strong>{result.scenario.hazard}</strong>
+          </article>
+          <article>
+            <span>Priority zone</span>
+            <strong>{selectedImpact.zone.name}</strong>
+          </article>
+          <article>
+            <span>First wave</span>
+            <strong>{result.allocations.length} moves</strong>
+          </article>
+          <article>
+            <span>Export state</span>
+            <strong>{scenario.privacyMode ? 'Local only' : 'Portable'}</strong>
+          </article>
+        </section>
+
         <MetricRibbon metrics={result.metrics} />
 
         <div className="dashboard-grid">
@@ -698,18 +723,24 @@ function App() {
         </div>
 
         <footer className="app-footer">
-          <span>
-            <Layers size={16} aria-hidden="true" />
-            Simulation mode
-          </span>
-          <span>
-            <MapPinned size={16} aria-hidden="true" />
-            Synthetic civic twin
-          </span>
-          <span>
-            <ShieldCheck size={16} aria-hidden="true" />
-            Local field notes
-          </span>
+          <div>
+            <strong>Aegis Atlas</strong>
+            <small>Offline-first disaster response cockpit for field teams, planners, and tabletop drills.</small>
+          </div>
+          <nav aria-label="System status">
+            <span>
+              <Layers size={16} aria-hidden="true" />
+              Simulation mode
+            </span>
+            <span>
+              <MapPinned size={16} aria-hidden="true" />
+              Synthetic civic twin
+            </span>
+            <span>
+              <ShieldCheck size={16} aria-hidden="true" />
+              Local field notes
+            </span>
+          </nav>
         </footer>
       </div>
 

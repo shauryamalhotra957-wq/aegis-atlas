@@ -799,3 +799,269 @@ button {
     font-size: 0.82rem;
   }
 }
+
+.app-shell {
+  color: #e9f2ed;
+  background:
+    linear-gradient(90deg, rgba(244, 184, 96, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(119, 166, 182, 0.055) 1px, transparent 1px),
+    linear-gradient(135deg, #07100d 0%, #111817 48%, #070b0c 100%);
+  background-size: 36px 36px, 36px 36px, auto;
+}
+
+.control-panel {
+  border-right-color: rgba(233, 242, 237, 0.12);
+  background:
+    linear-gradient(180deg, rgba(39, 124, 112, 0.13), transparent 38%),
+    rgba(7, 12, 12, 0.94);
+}
+
+.panel-heading h1,
+.top-bar h2,
+.section-heading h2,
+.slider-control strong,
+.switch,
+.metric-tile strong,
+.focus-grid strong,
+.panel-heading h2 {
+  color: #f7fbf7;
+}
+
+.eyebrow,
+.metric-tile span,
+.focus-grid span,
+.inventory-item span,
+.table-head,
+.allocation-strip,
+.app-footer,
+.slider-control > span,
+.note-field,
+.switch-row {
+  color: #9fb0aa;
+}
+
+.hazard-button,
+.icon-command,
+.note-field textarea,
+.report-drawer textarea,
+.scenario-chip,
+.metric-tile,
+.map-panel,
+.focus-panel,
+.agent-panel,
+.table-panel,
+.inventory-panel,
+.action-panel,
+.report-drawer,
+.readiness-dial,
+.focus-grid div,
+.agent-card,
+.table-row,
+.app-footer span,
+.mission-prologue article {
+  border-color: rgba(233, 242, 237, 0.12);
+  color: #dfe9e4;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.metric-tile,
+.map-panel,
+.focus-panel,
+.agent-panel,
+.table-panel,
+.inventory-panel,
+.action-panel,
+.report-drawer {
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.hazard-button:hover,
+.icon-command:hover,
+.primary-command:hover {
+  border-color: rgba(244, 184, 96, 0.7);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.hazard-button.is-active,
+.primary-command {
+  color: #07100d;
+  border-color: rgba(244, 184, 96, 0.72);
+  background: linear-gradient(135deg, #f4b860, #77a6b6);
+}
+
+.note-field textarea,
+.report-drawer textarea {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.map-shell,
+.map-base {
+  background: #0d1716;
+  fill: #0d1716;
+}
+
+.road-line {
+  stroke: rgba(233, 242, 237, 0.16);
+}
+
+.map-label {
+  fill: #f7fbf7;
+  stroke: rgba(7, 12, 12, 0.9);
+}
+
+.focus-grid div,
+.table-row,
+.allocation-strip span,
+.inference-list span,
+.reason-cloud span,
+.evidence-list span {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.action-copy,
+.agent-card p,
+.action-list,
+.metric-tile small {
+  color: #bfccc6;
+}
+
+.mission-prologue {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mission-prologue article {
+  min-height: 86px;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.mission-prologue span {
+  display: block;
+  color: #9fb0aa;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mission-prologue strong {
+  display: block;
+  margin-top: 8px;
+  overflow: hidden;
+  color: #f7fbf7;
+  font-size: 1.12rem;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.app-footer {
+  justify-content: space-between;
+  border-top: 1px solid rgba(233, 242, 237, 0.12);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.app-footer > div {
+  display: grid;
+  gap: 4px;
+}
+
+.app-footer strong {
+  color: #f7fbf7;
+  font-size: 1rem;
+}
+
+.app-footer small {
+  color: #9fb0aa;
+  font-size: 0.8rem;
+  text-transform: none;
+}
+
+.app-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.atlas-entry {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(90deg, rgba(119, 166, 182, 0.12) 0 1px, transparent 1px 22px),
+    #07100d;
+  pointer-events: none;
+  animation: atlasEntry 1500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.atlas-entry > div {
+  width: min(34rem, calc(100vw - 2rem));
+  border: 1px solid rgba(244, 184, 96, 0.36);
+  border-radius: 8px;
+  padding: 1rem;
+  background: rgba(9, 16, 15, 0.9);
+  animation: atlasEntryCard 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.atlas-entry span {
+  color: #f4b860;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.atlas-entry strong {
+  display: block;
+  margin-top: 8px;
+  color: #f7fbf7;
+  font-size: clamp(1.55rem, 4vw, 3.2rem);
+  line-height: 1;
+}
+
+@keyframes atlasEntry {
+  0% { opacity: 1; visibility: visible; }
+  72% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes atlasEntryCard {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 900px) {
+  .mission-prologue {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .app-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .app-footer nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .mission-prologue {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
