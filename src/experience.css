@@ -1,0 +1,68 @@
+:root {
+  --experience-ring: rgba(30, 64, 175, 0.72);
+  --experience-surface: rgba(255, 255, 252, 0.96);
+  --experience-shadow: 0 18px 54px rgba(33, 49, 43, 0.1);
+}
+
+html { scrollbar-gutter: stable; }
+::selection { color: #fff; background: #1e40af; }
+
+:where(button, input, textarea, select) {
+  min-block-size: 44px;
+  touch-action: manipulation;
+}
+
+button:not(:disabled) {
+  min-block-size: 44px;
+}
+
+.icon-command {
+  min-inline-size: 44px;
+}
+
+.zone-node .zone-hit-target,
+.zone-node:hover .zone-hit-target,
+.zone-node.is-selected .zone-hit-target {
+  fill: transparent;
+  stroke: transparent;
+  filter: none;
+  pointer-events: all;
+}
+
+:where(input, textarea, select) { font-size: max(1rem, 16px); }
+
+:where(button, input, textarea, select, a):focus-visible {
+  outline: 3px solid var(--experience-ring);
+  outline-offset: 3px;
+}
+
+:where(.control-panel, .top-bar, .metric-tile, .action-panel, .map-panel, .report-drawer, .focus-grid div) {
+  border-radius: 18px;
+  border-color: rgba(30, 64, 175, 0.14);
+  box-shadow: var(--experience-shadow);
+}
+
+.control-panel {
+  border-radius: 0 22px 22px 0;
+  background: var(--experience-surface);
+}
+
+:where(.metric-tile, .focus-grid div, .scenario-chip) {
+  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :where(.metric-tile, .focus-grid div, .scenario-chip):hover {
+    border-color: rgba(30, 64, 175, 0.3);
+    box-shadow: 0 16px 38px rgba(30, 64, 175, 0.1);
+  }
+}
+
+@media (max-width: 760px) {
+  .control-panel { border-radius: 0 0 22px 22px; }
+  :where(.top-bar, .metric-tile, .action-panel, .map-panel, .report-drawer) { border-radius: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
