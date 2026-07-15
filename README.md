@@ -123,3 +123,7 @@ The repo includes an MIT license, GitHub Actions CI, GitHub Pages deployment, co
 ## Safety Boundary
 
 Aegis Atlas is a planning simulation and portfolio-grade prototype. It is not live emergency command authority. Real deployment would require verified sensors, official GIS data, emergency-management review, model validation, accessibility audits, privacy review, and incident-command integration.
+
+## Experience Design
+
+The operations console follows the [Aegis Atlas design system](design-system/aegis-atlas/MASTER.md): compact data hierarchy, modular panels, unambiguous states, keyboard-visible focus, touch-safe controls, and reduced-motion support.

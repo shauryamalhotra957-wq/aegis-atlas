@@ -26,6 +26,7 @@ import {
 } from 'lucide-react'
 import clsx from 'clsx'
 import './App.css'
+import './experience.css'
 import { CITY_ZONES, DEFAULT_SCENARIO } from './domain/cityData'
 import { buildIncidentReport, buildPortableJson } from './domain/report'
 import { clearScenario, loadScenario, saveScenario } from './domain/persistence'
@@ -376,6 +377,13 @@ function CommandMap({
               }}
               className={clsx('zone-node', selectedZoneId === impact.zone.id && 'is-selected')}
             >
+              <circle
+                cx={impact.zone.x}
+                cy={impact.zone.y}
+                r={10}
+                className="zone-hit-target"
+                aria-hidden="true"
+              />
               <circle
                 cx={impact.zone.x}
                 cy={impact.zone.y}
