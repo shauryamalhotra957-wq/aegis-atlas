@@ -438,7 +438,7 @@ function ZoneFocus({
       <div className="allocation-strip">
         <span>
           <Route size={16} aria-hidden="true" />
-          ETA {allocation?.etaHours ?? '--'}h
+          ETA {allocation?.etaHours == null ? '--' : `${allocation.etaHours}h`}
         </span>
         <span>
           <ShieldCheck size={16} aria-hidden="true" />

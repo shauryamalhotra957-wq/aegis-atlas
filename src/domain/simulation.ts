@@ -149,7 +149,7 @@ export function computeZoneImpacts(scenarioInput: Scenario, zones = CITY_ZONES):
 }
 
 function allocateUnits(demand: number, unitSize: number, available: number, maxPerZone: number) {
-  return Math.min(maxPerZone, available, Math.ceil(Math.max(0, demand) / unitSize))
+  return Math.min(maxPerZone, Math.max(0, available), Math.ceil(Math.max(0, demand) / unitSize))
 }
 
 function subtractInventory(remaining: Inventory, allocation: Inventory) {
@@ -160,6 +160,9 @@ function subtractInventory(remaining: Inventory, allocation: Inventory) {
 
 function actionForImpact(impact: ZoneImpact, scenario: Scenario, allocation: Inventory) {
   const lead = impact.zone.name
+  if (Object.values(allocation).every((units) => units === 0)) {
+    return `No deployable units remain for ${lead}; request mutual aid and keep the zone in the unserved queue.`
+  }
   if (scenario.hazard === 'flood' && allocation.pumps > 0) {
     return `Stage pumps and high-water rescue at ${lead}; open shelter overflow before peak river crest.`
   }
@@ -227,8 +230,11 @@ export function allocateResources(
       generators * 0.08 +
       shelterKits * 0.025
     const routePenalty = (scenario.roadDamage + scenario.commsOutage + (100 - impact.zone.roadAccess)) / 450
-    const coverage = clamp(responsePower - routePenalty, 0.08, 0.96)
-    const etaHours = clamp(3 + impact.priority / 11 + routePenalty * 9 - coverage * 5, 1.5, 24)
+    const hasDeployableUnits = Object.values(allocation).some((units) => units > 0)
+    const coverage = hasDeployableUnits ? clamp(responsePower - routePenalty, 0.08, 0.96) : 0
+    const etaHours = hasDeployableUnits
+      ? clamp(3 + impact.priority / 11 + routePenalty * 9 - coverage * 5, 1.5, 24)
+      : null
 
     allocations.push({
       zoneId: impact.zone.id,
@@ -240,7 +246,7 @@ export function allocateResources(
       generators,
       shelterKits,
       coverage: Math.round(coverage * 100),
-      etaHours: Math.round(etaHours * 10) / 10,
+      etaHours: etaHours === null ? null : Math.round(etaHours * 10) / 10,
       action: actionForImpact(impact, scenario, allocation),
     })
   }
@@ -384,8 +390,12 @@ export function simulateScenario(scenarioInput: Scenario): SimulationResult {
     ),
   )
   const baselineEtaHours = clamp(10 + scenario.roadDamage / 10 + scenario.commsOutage / 13, 8, 26)
-  const optimizedEtaHours =
-    allocations.reduce((sum, allocation) => sum + allocation.etaHours, 0) / Math.max(1, allocations.length)
+  const dispatchEtas = allocations.flatMap((allocation) =>
+    allocation.etaHours === null ? [] : [allocation.etaHours],
+  )
+  const optimizedEtaHours = dispatchEtas.length
+    ? dispatchEtas.reduce((sum, etaHours) => sum + etaHours, 0) / dispatchEtas.length
+    : baselineEtaHours
   const agents = buildAgents(scenario, impacts, allocations, peopleProtected, unservedPeople)
   const metrics = buildMetrics({
     peopleAtRisk,

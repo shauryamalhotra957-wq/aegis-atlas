@@ -30,7 +30,8 @@ export function buildIncidentReport(result: SimulationResult) {
     '## Resource Moves',
     ...result.allocations.slice(0, 7).map((allocation, index) => {
       const zone = result.impacts.find((impact) => impact.zone.id === allocation.zoneId)?.zone.name ?? allocation.zoneId
-      return `${index + 1}. ${zone}: ${allocation.action} Coverage ${allocation.coverage}%, ETA ${allocation.etaHours}h.`
+      const eta = allocation.etaHours === null ? 'unavailable' : `${allocation.etaHours}h`
+      return `${index + 1}. ${zone}: ${allocation.action} Coverage ${allocation.coverage}%, ETA ${eta}.`
     }),
     '',
     '## Agent Briefs',

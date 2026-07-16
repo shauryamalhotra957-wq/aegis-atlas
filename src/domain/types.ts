@@ -66,7 +66,7 @@ export interface ResourceAllocation {
   generators: number
   shelterKits: number
   coverage: number
-  etaHours: number
+  etaHours: number | null
   action: string
 }
 
