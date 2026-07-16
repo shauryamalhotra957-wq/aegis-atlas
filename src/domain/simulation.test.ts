@@ -1,6 +1,17 @@
 import { describe, expect, it } from 'vitest'
 import { DEFAULT_SCENARIO } from './cityData'
-import { computeZoneImpacts, simulateScenario } from './simulation'
+import { allocateResources, computeZoneImpacts, simulateScenario } from './simulation'
+import type { Inventory } from './types'
+
+const EMPTY_INVENTORY: Inventory = {
+  rescueTeams: 0,
+  medicalTeams: 0,
+  buses: 0,
+  drones: 0,
+  pumps: 0,
+  generators: 0,
+  shelterKits: 0,
+}
 
 describe('crisis simulation', () => {
   it('produces a complete deterministic plan for the default scenario', () => {
@@ -18,6 +29,19 @@ describe('crisis simulation', () => {
     const remaining = Object.values(result.remainingInventory)
 
     expect(remaining.every((value) => value >= 0)).toBe(true)
+  })
+
+  it('reports zero coverage when no deployable inventory remains', () => {
+    const impacts = computeZoneImpacts(DEFAULT_SCENARIO).slice(0, 1)
+    const { allocations } = allocateResources(
+      impacts,
+      DEFAULT_SCENARIO,
+      EMPTY_INVENTORY,
+    )
+
+    expect(allocations[0]?.coverage).toBe(0)
+    expect(allocations[0]?.etaHours).toBeNull()
+    expect(allocations[0]?.action).toContain('request mutual aid')
   })
 
   it('makes hazard-specific zones rise when scenario changes', () => {
