@@ -28,9 +28,18 @@ export function loadScenario(): Scenario {
 }
 
 export function saveScenario(scenario: Scenario) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeScenario(scenario)))
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeScenario(scenario)))
+  } catch {
+    // Storage can be blocked by privacy settings or unavailable when its quota is exhausted.
+    // The simulator remains fully usable in memory in either case.
+  }
 }
 
 export function clearScenario() {
-  localStorage.removeItem(STORAGE_KEY)
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+  } catch {
+    // Reset the in-memory scenario even when persisted storage cannot be accessed.
+  }
 }
