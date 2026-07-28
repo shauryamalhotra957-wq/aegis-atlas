@@ -461,9 +461,22 @@ button {
 }
 
 .zone-node:hover circle,
+.zone-node:focus-visible circle,
 .zone-node.is-selected circle {
   filter: drop-shadow(0 4px 8px rgba(33, 49, 43, 0.28));
   stroke: #21312b;
+}
+
+.zone-node:focus-visible .zone-hit-target {
+  fill: rgba(244, 184, 96, 0.22);
+  stroke: #f4b860;
+  stroke-width: 1.4;
+}
+
+.map-navigation-hint {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  margin: 0.25rem 0 0.65rem;
 }
 
 .risk-critical {

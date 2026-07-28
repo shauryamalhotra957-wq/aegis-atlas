@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
@@ -13,7 +13,7 @@ describe('Aegis Atlas app', () => {
 
     expect(screen.getByRole('heading', { name: /Disaster Response Command/i })).toBeInTheDocument()
     expect(screen.getByText(/People at risk/i)).toBeInTheDocument()
-    expect(screen.getByRole('img', { name: /City risk map/i })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: /City risk map/i })).toBeInTheDocument()
   })
 
   it('applies field intel and shifts the hazard mode', async () => {
@@ -36,6 +36,20 @@ describe('Aegis Atlas app', () => {
 
     expect(screen.getByRole('dialog', { name: /Incident action report/i })).toBeInTheDocument()
     expect(screen.getByDisplayValue(/Aegis Atlas Incident Action Plan/i)).toBeInTheDocument()
+  })
+
+  it('moves map focus and selection with the keyboard', () => {
+    render(<App />)
+
+    const dockWard = screen.getByRole('button', { name: /Dock Ward, risk/i })
+    const riverbend = screen.getByRole('button', { name: /Riverbend, risk/i })
+    dockWard.focus()
+
+    fireEvent.keyDown(dockWard, { key: 'ArrowRight' })
+
+    expect(riverbend).toHaveFocus()
+    expect(riverbend).toHaveAttribute('aria-pressed', 'true')
+    expect(dockWard).toHaveAttribute('aria-pressed', 'false')
   })
 
   it('starts a JSON download from the export button', async () => {

@@ -327,8 +327,16 @@ function CommandMap({
         </span>
       </div>
 
+      <p className="map-navigation-hint" id="map-navigation-hint">
+        Select a zone, then use the arrow keys to move through the response map.
+      </p>
       <div className="map-shell">
-        <svg viewBox="0 0 100 100" role="img" aria-label="City risk map">
+        <svg
+          viewBox="0 0 100 100"
+          role="group"
+          aria-label="City risk map"
+          aria-describedby="map-navigation-hint"
+        >
           <rect x="0" y="0" width="100" height="100" rx="4" className="map-base" />
           <path
             d="M4 77 C18 69 25 90 39 82 C55 72 63 91 76 79 C86 69 91 76 97 70"
@@ -363,16 +371,49 @@ function CommandMap({
               EOC
             </text>
           </g>
-          {zones.map((impact) => (
+          {zones.map((impact, index) => (
             <g
               key={impact.zone.id}
               role="button"
-              tabIndex={0}
+              tabIndex={selectedZoneId === impact.zone.id ? 0 : -1}
+              data-zone-id={impact.zone.id}
               aria-label={`${impact.zone.name}, risk ${impact.risk}`}
+              aria-pressed={selectedZoneId === impact.zone.id}
               onClick={() => onSelectZone(impact.zone.id)}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
                   onSelectZone(impact.zone.id)
+                  return
+                }
+
+                const keyOffsets: Record<string, number> = {
+                  ArrowRight: 1,
+                  ArrowDown: 1,
+                  ArrowLeft: -1,
+                  ArrowUp: -1,
+                }
+                const offset = keyOffsets[event.key]
+                let nextIndex: number | undefined
+
+                if (offset !== undefined) {
+                  nextIndex = (index + offset + zones.length) % zones.length
+                } else if (event.key === 'Home') {
+                  nextIndex = 0
+                } else if (event.key === 'End') {
+                  nextIndex = zones.length - 1
+                }
+
+                if (nextIndex !== undefined) {
+                  event.preventDefault()
+                  const nextZone = zones[nextIndex]
+                  const nextNode =
+                    nextZone &&
+                    event.currentTarget.ownerSVGElement?.querySelector<SVGGElement>(
+                      `[data-zone-id="${nextZone.zone.id}"]`,
+                    )
+                  nextNode?.focus()
+                  if (nextZone) onSelectZone(nextZone.zone.id)
                 }
               }}
               className={clsx('zone-node', selectedZoneId === impact.zone.id && 'is-selected')}
