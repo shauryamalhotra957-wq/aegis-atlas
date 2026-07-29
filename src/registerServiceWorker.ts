@@ -7,7 +7,6 @@ export function registerServiceWorker() {
     navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, {
       scope: import.meta.env.BASE_URL,
     }).catch(() => {
-      // The app remains fully usable without the offline cache.
     })
   })
 }
