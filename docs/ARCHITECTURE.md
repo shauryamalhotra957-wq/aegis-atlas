@@ -12,7 +12,7 @@ flowchart LR
   F --> G["Resource allocator"]
   G --> H["Agent briefs"]
   G --> I["Incident action report"]
-  G --> J["Command-center UI"]
+  G --> J["Command-center UI"]     
   J --> K["Local storage"]
   I --> L["Markdown / JSON export"]
 ```
