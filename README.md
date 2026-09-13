@@ -1,5 +1,8 @@
 # Aegis Atlas
 
+[![CI](https://github.com/shauryamalhotra957-wq/aegis-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/shauryamalhotra957-wq/aegis-atlas/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 Offline-first disaster response command simulator for civic resilience demos, hackathons, capstones, and startup validation.
 
 ## What It Is
