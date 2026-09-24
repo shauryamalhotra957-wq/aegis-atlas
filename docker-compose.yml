@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  aegis-atlas:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+    command: node --test tests/commandResilience.test.mjs
